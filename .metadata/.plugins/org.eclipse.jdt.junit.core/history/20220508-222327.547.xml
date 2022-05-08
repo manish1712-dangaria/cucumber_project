@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="Runner" project="Cucumber" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="methods.Runner" time="29.903">
+    <testsuite name="Product purchase" time="29.903">
+      <testcase name="Buying Product From Demoblaze" classname="Product purchase" time="29.903"/>
+    </testsuite>
+  </testsuite>
+</testrun>

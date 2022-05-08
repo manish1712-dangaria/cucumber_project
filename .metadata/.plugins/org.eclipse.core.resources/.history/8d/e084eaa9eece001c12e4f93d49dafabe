@@ -1,0 +1,54 @@
+package stepFile;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import methods.Runner;
+
+public class DemoBlazeRun extends Runner {
+	 
+	
+	 
+	 @Given("^user views the list of product$")
+	    public void userViewsTheListOfProduct() throws Throwable {
+		driver = browser();
+		driver.manage().window().maximize();
+		driver.get("https://www.demoblaze.com/index.html");
+		Thread.sleep(5000);
+		 
+	    }
+
+	    @When("^user views details of product$")
+	    public void userViewsDetailsOfProduct() throws Throwable {
+	    	driver.findElement(By.linkText("Phones")).click(); 
+	    	driver.findElement(By.linkText("Samsung galaxy s6")).click();
+	    }
+	    
+	    @And("^user adds product to cart$")
+	    public void userAddsProductToCart() throws Throwable {
+	    	driver.findElement(By.xpath("//a[@class='btn btn-success btn-lg']")).click();
+			driver.findElement(By.id("cartur")).click();
+			Thread.sleep(3000);
+	    }
+
+	    @Then("^user checkout and makes payment for the product$")
+	    public void userCheckoutAndMakesPaymentForTheProduct() throws Throwable {
+	    	driver.findElement(By.xpath("//button[contains(text(),'Place Order')]")).click();
+	    	driver.findElement(By.id("name")).sendKeys("Manish Dangaria");
+			driver.findElement(By.id("country")).sendKeys("India");
+			driver.findElement(By.id("city")).sendKeys("Mumbai");
+			driver.findElement(By.id("card")).sendKeys("3503252200956600");
+			driver.findElement(By.id("month")).sendKeys("05");
+			driver.findElement(By.id("year")).sendKeys("2022");
+			Thread.sleep(3000);
+			driver.findElement(By.xpath("//button[contains(text(),'Purchase')]")).click();
+			Thread.sleep(7000);
+			System.out.println("Test case Sucessfully passed");
+	    }
+	
+}

@@ -1,0 +1,52 @@
+package stepFile;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class DemoBlazeRun {
+	ChromeDriver driver;
+	
+	 @Given("^user views the list of product$")
+	    public void userViewsTheListOfProduct() throws Throwable {
+		 this.driver = new ChromeDriver();  
+		 System.setProperty("webdriver.chrome.driver", "D:\\New folder (6)\\chromedriver_win32 (1)\\chromedriver.exe");
+		 this.driver.navigate().to("https://www.demoblaze.com/index.html");
+		 Thread.sleep(5000);
+		  this.driver.findElement(By.linkText("Phones")).click();
+		  
+	    }
+
+	    @When("^user views details of product$")
+	    public void userViewsDetailsOfProduct() throws Throwable {
+	    	this.driver.manage().window().maximize();
+			this.driver.findElement(By.linkText("Samsung galaxy s6")).click();
+	    }
+	    
+	    @And("^user adds product to cart$")
+	    public void userAddsProductToCart() throws Throwable {
+	    	this.driver.findElement(By.xpath("//a[contains(text(),'Add to cart')]")).click();
+			this.driver.findElement(By.id("cartur")).click();
+			Thread.sleep(3000);
+	    }
+
+	    @Then("^user checkout and makes payment for the product$")
+	    public void userCheckoutAndMakesPaymentForTheProduct() throws Throwable {
+	    	this.driver.findElement(By.xpath("//button[contains(text(),'Place Order')]")).click();
+	    	this.driver.findElement(By.id("name")).sendKeys("Manish Dangaria");
+			this.driver.findElement(By.id("country")).sendKeys("India");
+			this.driver.findElement(By.id("city")).sendKeys("Mumbai");
+			this.driver.findElement(By.id("card")).sendKeys("3503252200956600");
+			this.driver.findElement(By.id("month")).sendKeys("05");
+			this.driver.findElement(By.id("year")).sendKeys("2022");
+			Thread.sleep(3000);
+			this.driver.findElement(By.xpath("//button[contains(text(),'Purchase')]")).click();
+			Thread.sleep(7000);
+			System.out.println("Test case Sucessfully passed");
+	    }
+	
+}
